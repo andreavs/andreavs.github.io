@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andreas Våvang Solbrå</title>
+  <meta name="description" content="Personal site of Andreas Våvang Solbrå: games and other projects.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f5fb;
+      --surface: #ffffff;
+      --text: #1d1b26;
+      --muted: #5b5870;
+      --border: #dcd8ea;
+      --accent: #c2185b;
+      --accent-2: #6d28d9;
+      --shadow: 0 1px 2px rgb(20 10 40 / 0.06), 0 8px 24px rgb(20 10 40 / 0.08);
+      --pixel: "Press Start 2P", ui-monospace, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12101a;
+        --surface: #1c1928;
+        --text: #eceaf5;
+        --muted: #a9a5bf;
+        --border: #302b44;
+        --accent: #ff4fa3;
+        --accent-2: #a78bfa;
+        --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    a { color: var(--accent); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+    header { border-bottom: 1px solid var(--border); background: var(--surface); }
+    .site-name {
+      margin: 0;
+      padding: 28px 0 20px;
+      font-family: var(--pixel);
+      font-size: clamp(0.95rem, 3.6vw, 1.5rem);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+    }
+    .site-name a { color: inherit; text-decoration: none; }
+    .site-name span { color: var(--accent); }
+    nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; overflow-x: auto; }
+    nav a {
+      display: block;
+      padding: 10px 14px;
+      border-bottom: 3px solid transparent;
+      color: var(--muted);
+      font-family: var(--pixel);
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--text); }
+    nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 2px; }
+    nav a:focus-visible { outline-offset: -4px; }
+
+    main.wrap { padding-top: 32px; padding-bottom: 48px; }
+    main h2 { margin: 0 0 20px; font-family: var(--pixel); font-size: 1rem; font-weight: 400; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+      gap: 20px;
+      margin: 0; padding: 0; list-style: none;
+    }
+    .card {
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+    .card-body { display: flex; flex-direction: column; gap: 10px; padding: 18px 18px 20px; flex: 1; }
+    .card h3 { margin: 0; font-family: var(--pixel); font-size: 0.95rem; font-weight: 400; line-height: 1.5; }
+    .card h3 a { color: inherit; text-decoration: none; }
+    .card h3 a:hover { color: var(--accent); }
+    .card p { margin: 0; color: var(--muted); }
+    .card-links { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: auto; padding-top: 6px; }
+    .btn {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    @media (prefers-color-scheme: dark) { .btn { color: #1a0a14; } }
+    .btn:hover { filter: brightness(1.08); }
+
+    footer { border-top: 1px solid var(--border); padding: 20px 0 32px; color: var(--muted); font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="site-name"><a href="#games">Andreas Våvang <span>Solbrå</span></a></p>
+      <nav aria-label="Sections"><ul id="tabs"></ul></nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="content" tabindex="-1">
+    <noscript>
+      <h2>Games</h2>
+      <p><a href="https://andreavs.github.io/fuse-bombers/">Fuse Bombers</a>: one-screen party artillery game for 2–6 players and bots.</p>
+    </noscript>
+  </main>
+
+  <footer>
+    <div class="wrap">© Andreas Våvang Solbrå · <a href="https://github.com/andreavs">GitHub</a></div>
+  </footer>
+
+  <script>
+    // Add a tab by adding a section; add a game by adding an item.
+    const sections = [
+      {
+        id: "games",
+        label: "Games",
+        items: [
+          {
+            title: "Fuse Bombers",
+            url: "https://andreavs.github.io/fuse-bombers/",
+            description: "One-screen party artillery game for 2–6 players and bots.",
+            image: "images/fuse-bombers.jpg",
+            imageAlt: "Fuse Bombers gameplay: castle tanks on sunset desert hills lobbing shells while a burning fuse runs across the top of the screen.",
+            source: "https://github.com/andreavs/fuse-bombers",
+          },
+        ],
+      },
+    ];
+
+    const el = (tag, props = {}, ...children) => {
+      const node = Object.assign(document.createElement(tag), props);
+      node.append(...children);
+      return node;
+    };
+
+    function card(item) {
+      return el("li", { className: "card" },
+        el("img", { src: item.image, alt: item.imageAlt, width: 1200, height: 676 }),
+        el("div", { className: "card-body" },
+          el("h3", {}, el("a", { href: item.url }, item.title)),
+          el("p", {}, item.description),
+          el("div", { className: "card-links" },
+            el("a", { className: "btn", href: item.url }, "Play"),
+            el("a", { href: item.source }, "Source on GitHub"))));
+    }
+
+    const tabs = document.getElementById("tabs");
+    const content = document.getElementById("content");
+    const links = sections.map((s) => {
+      const a = el("a", { href: "#" + s.id }, s.label);
+      tabs.append(el("li", {}, a));
+      return a;
+    });
+
+    function render() {
+      const id = location.hash.slice(1);
+      const i = Math.max(0, sections.findIndex((s) => s.id === id));
+      const section = sections[i];
+      links.forEach((a, j) => {
+        if (i === j) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+      document.title = section.label + " · Andreas Våvang Solbrå";
+      content.replaceChildren(
+        el("h2", {}, section.label),
+        el("ul", { className: "cards" }, ...section.items.map(card)));
+    }
+
+    addEventListener("hashchange", render);
+    render();
+  </script>
+</body>
+</html>
