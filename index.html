@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Andreas Våvang Solbrå</title>
-  <meta name="description" content="Personal site of Andreas Våvang Solbrå: games and other projects.">
+  <meta name="description" content="Personal site of Andreas Våvang Solbrå: games, research and other projects.">
   <meta name="color-scheme" content="light dark">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,6 +121,8 @@
     <noscript>
       <h2>Games</h2>
       <p><a href="https://andreavs.github.io/fuse-bombers/">Fuse Bombers</a>: one-screen party artillery game for 2–6 players and bots.</p>
+      <h2>Research</h2>
+      <p><a href="https://andreavs.github.io/neuro-electrodiffusion-viz/">Neuro electrodiffusion</a>: real-time browser simulations of ion electrodiffusion in brain tissue at three scales, from my PhD work.</p>
     </noscript>
   </main>
 
@@ -129,7 +131,8 @@
   </footer>
 
   <script>
-    // Add a tab by adding a section; add a game by adding an item.
+    // Add a tab by adding a section; add a project by adding an item.
+    // `action` is the main button label (defaults to "Play").
     const sections = [
       {
         id: "games",
@@ -142,6 +145,21 @@
             image: "images/fuse-bombers.jpg",
             imageAlt: "Fuse Bombers gameplay: castle tanks on sunset desert hills lobbing shells while a burning fuse runs across the top of the screen.",
             source: "https://github.com/andreavs/fuse-bombers",
+          },
+        ],
+      },
+      {
+        id: "research",
+        label: "Research",
+        items: [
+          {
+            title: "Neuro electrodiffusion",
+            url: "https://andreavs.github.io/neuro-electrodiffusion-viz/",
+            description: "Real-time browser simulations of ion electrodiffusion in brain tissue at three scales, from my PhD work: tissue with point-source neurons, a single cell's geometry, and individual ions as particles.",
+            image: "images/neuro-electrodiffusion-viz.jpg",
+            imageAlt: "Illustration of an ion concentration field: glowing contour bands around point sources and sinks on a purple background.",
+            source: "https://github.com/andreavs/neuro-electrodiffusion-viz",
+            action: "Open app",
           },
         ],
       },
@@ -160,7 +178,7 @@
           el("h3", {}, el("a", { href: item.url }, item.title)),
           el("p", {}, item.description),
           el("div", { className: "card-links" },
-            el("a", { className: "btn", href: item.url }, "Play"),
+            el("a", { className: "btn", href: item.url }, item.action ?? "Play"),
             el("a", { href: item.source }, "Source on GitHub"))));
     }
 
